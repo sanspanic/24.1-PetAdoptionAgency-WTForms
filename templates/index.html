@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} All Pets {% endblock %}
+
+{% block content %} 
+<div class="jumbotron text-center mb-5">
+    <h1 class='display-1'>All Pets</h1>
+    <a class='btn btn-success' href="/add">Add Pet</a>
+</div>
+
+{% for msg in get_flashed_messages() %}
+  <div class='flash-success'>{{ msg }}</div>
+{% endfor %}
+
+
+<div class="row">
+    {% for pet in pets %}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+                    {% if pet.photo_url %}        
+            <img src="{{pet.photo_url}}" class="card-img-top" alt="pet">
+                    {% else %}
+            <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" class="card-img-top" alt="pet">
+                    {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{pet.name}}</h5>
+                    {% if pet.notes %}
+              <p class="card-text">{{pet.notes}}.
+                    {% else %}
+                <p class="card-text">No notes available.
+                    {% endif %}
+                    {% if pet.is_available %}
+                <span class='badge badge-success'>Available</span>  </p>
+                    {% else %}
+                <span class='badge badge-warning'>Adopted</span>  </p>
+                    {% endif %}
+              <a href="#" class="btn btn-primary">View More</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+{% endblock %}
