@@ -37,7 +37,7 @@ def add_pet():
 
         new_pet = Pet(name=name, species=species, age=age, photo_url=photo_url, notes=notes)
         db.session.add(new_pet)
-        db.session.commit(new_pet)
+        db.session.commit()
 
         flash(f"Added {name} the {species}, age {age}")
         return redirect("/")
