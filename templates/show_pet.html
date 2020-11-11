@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %} Show Pet {% endblock %}
+
+{% block content %} 
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-6">
+            <h1 class='display-1'>{{pet.name}}</h1>
+            <div>Name: {{pet.name}}</div>
+            <div>Age: {{pet.age}}</div>
+            <div>Species: {{pet.species}}</div>
+            <div>Notes: {{pet.notes}}</div>
+            <div>Status: 
+                {% if pet.is_available %}
+                <span class='badge badge-success'>Available</span>
+                {% else %}
+                <span class='badge badge-warning'>Adopted</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-6">
+            <img src="{{pet.photo_url}}" alt="pet photo" width='400'>
+        </div>
+    </div>
+        <h3>Edit Pet Form</h3>
+        <form id='edit-pet-form' method='POST'>
+            {{form.hidden_tag()}}
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                {{form.name.label}}
+                {{form.name(class_='form-control')}}
+              </div>
+              <div class="form-group col-md-4">
+                {{form.age.label}}
+                {{form.age(class_='form-control')}}
+              </div>
+              <div class="form-group col-md-4">
+                {{form.is_available.label}}
+                {{form.is_available(class_='form-control')}}
+              </div>
+            </div>
+            <div class="form-group">
+                {{form.photo_url.label}}
+                {{form.photo_url(class_='form-control')}}
+            </div>
+            <div class="form-group">
+                {{form.notes.label}}
+                {{form.notes(class_='form-control')}}
+            </div>
+            <button type="submit" class="btn btn-primary">Edit Pet</button>
+          </form>
+
+
+</div>
+
+
+
+
+
+{% endblock %}
